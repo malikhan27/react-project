@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "./utils/config";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "./app.css"
+import "./App.css"
 import styles from './App.module.css'
 import MenuIcon from "./components/MenuIcon";
 import ToggleButton from "./components/ToggleButton";
