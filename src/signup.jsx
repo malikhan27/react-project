@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "./utils/config";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "./App.css"
+import "./app.css"
 import styles from './App.module.css'
 import MenuIcon from "./components/MenuIcon";
 import ToggleButton from "./components/ToggleButton";
@@ -64,6 +64,7 @@ export default function Signup() {
                   </p>
                 </div>
                 <Auth
+                   
                   supabaseClient={supabase}
                   view={view.id}
                   appearance={{

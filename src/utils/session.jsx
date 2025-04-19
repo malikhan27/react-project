@@ -6,8 +6,6 @@ import { useEffect } from "react";
 
 export default function GetSession() {
    
-        const location = useLocation() 
-        console.log(location.pathname)
     
     
     const navigatepage = useNavigate()
@@ -23,7 +21,8 @@ export default function GetSession() {
     
         if(session) {
             if (isAuthPage) {
-                navigatepage("/dashboard")
+              navigatepage("/dashboard")
+               
               }
             } else {
               if (!isAuthPage) {
@@ -36,6 +35,22 @@ export default function GetSession() {
     }
    
  }
+ useEffect(() => {
+  const { data: listener } = supabase.auth.onAuthStateChange((event, session) => {
+    if (event === 'SIGNED_IN') {
+      console.log('User signed in!', session);
+      sessioncall()
+    }
+  });
+
+  return () => {
+    listener.subscription.unsubscribe();
+  };
+}, []);
  
-    sessioncall()   
+  
+
+ sessioncall()
+
+    
 }

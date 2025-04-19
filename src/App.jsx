@@ -9,11 +9,12 @@ import GetSession from './utils/session';
 
 
 function App() {
-  
+   
    return(
    <>
+   <GetSession/>
       <Signup/>
-      <GetSession/>
+ 
 
     </>
     )
