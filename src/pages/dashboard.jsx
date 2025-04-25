@@ -14,6 +14,8 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { AppProvider } from '@toolpad/core/AppProvider';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
+import Logo from "../assets/logo.png";
+
 
 import {
   Account,
@@ -26,20 +28,18 @@ import MyLoanContent from '../components/myloancontent';
 import NewLoan from '../components/newloan';
 import userImage from '../assets/user.png';
 import AddIcon from '@mui/icons-material/Add';
+import { supabase } from '../utils/config';
+import { useNavigate,useLocation } from 'react-router';
+import GetSession from '../utils/session';
 
 
+function sessionCheck() {
+return(
+  <GetSession/>
 
-function CustomHeader() {
-  return (
-    <Box sx={{ px: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: 64 }}>
-      <Stack direction="row" spacing={1} alignItems="center">
-        <Box component="img" src={userImage} alt="Logo" sx={{ height: 40 }} />
-        <Typography variant="h6">My Custom Dashboard</Typography>
-      </Stack>
-      <Avatar src={userImage} />
-    </Box>
-  );
-}
+)}
+
+sessionCheck()
 
 
 
@@ -67,10 +67,31 @@ const NAVIGATION = [
 ];
 
 const demoTheme = createTheme({
-  cssVariables: {
-    colorSchemeSelector: 'data-toolpad-color-scheme',
+  palette: {
+    primary: {
+      main: '#C8A2D1',  // Lilac
+    },
+    background: {
+      default: '#ffff',  // Light Grey
+      paper: '#ffff',    // White paper background
+    },
+    text: {
+      primary: '#380940',  // Dark text for readability
+      secondary: '#380940',  // Lighter grey text
+    },
   },
-  colorSchemes: { light: true, dark: true },
+  typography: {
+    fontFamily: 'Roboto, sans-serif',
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: '12px', // Rounded buttons
+        },
+      },
+    },
+  },
   breakpoints: {
     values: {
       xs: 0,
@@ -81,6 +102,7 @@ const demoTheme = createTheme({
     },
   },
 });
+
 
 
 
@@ -130,75 +152,13 @@ AccountSidebarPreview.propTypes = {
   open: PropTypes.bool,
 };
 
-const accounts = [
-  {
-    id: 1,
-    name: 'Muhammad Ali',
-    email: 'bharatkashyap@outlook.com',
-    image:userImage ,
-    projects: [
-      {
-        id: 3,
-        title: 'Project X',
-      },
-    ],
-  },
- 
-];
 
-function SidebarFooterAccountPopover() {
-  return (
-    <Stack direction="column">
-      <Typography variant="body2" mx={2} mt={1}>
-        Accounts
-      </Typography>
-      <MenuList>
-        {accounts.map((account) => (
-          <MenuItem
-            key={account.id}
-            component="button"
-            sx={{
-              justifyContent: 'flex-start',
-              width: '100%',
-              columnGap: 2,
-            }}
-          >
-            <ListItemIcon>
-              <Avatar
-                sx={{
-                  width: 32,
-                  height: 32,
-                  fontSize: '0.95rem',
-                  bgcolor: account.color,
-                }}
-                src={account.image ?? ''}
-                alt={account.name ?? ''}
-              >
-                {account.name[0]}
-              </Avatar>
-            </ListItemIcon>
-            <ListItemText
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-                width: '100%',
-              }}
-              primary={account.name}
-              secondary={account.email}
-              primaryTypographyProps={{ variant: 'body2' }}
-              secondaryTypographyProps={{ variant: 'caption' }}
-            />
-          </MenuItem>
-        ))}
-      </MenuList>
-      <Divider />
-      <AccountPopoverFooter>
-        <SignOutButton />
-      </AccountPopoverFooter>
-    </Stack>
-  );
-}
+ 
+ 
+ 
+
+
+
 
 const createPreviewComponent = (mini) => {
   function PreviewComponent(props) {
@@ -212,8 +172,7 @@ function SidebarFooterAccount({ mini }) {
   return (
     <Account
       slots={{
-        preview: PreviewComponent,
-        popoverContent: SidebarFooterAccountPopover,
+        preview: PreviewComponent
       }}
       slotProps={{
         popover: {
@@ -253,15 +212,13 @@ SidebarFooterAccount.propTypes = {
   mini: PropTypes.bool.isRequired,
 };
 
-const demoSession = {
-  user: {
-    name: 'Bharat Kashyap',
-    email: 'bharatkashyap@outlook.com',
-    image:userImage,
-  },
-};
+
 
 function DashboardLayoutAccountSidebar(props) {
+  
+
+  const navigate = useNavigate();
+  
   const { window } = props;
 
   const [pathname, setPathname] = React.useState('/dashboard');
@@ -277,24 +234,52 @@ function DashboardLayoutAccountSidebar(props) {
   // Remove this const when copying and pasting into your project.
   const demoWindow = window !== undefined ? window() : undefined;
 
-  const [session, setSession] = React.useState(demoSession);
+  const [session, setSession] = React.useState({});
+
+  async function fetchUser() {
+    const { data: { user } } = await supabase.auth.getUser()
+
+    if (user) {
+      setSession(
+        {
+          user: {
+            name: user.user_metadata.full_name,
+            email: user.email,
+            image: user.user_metadata.avatar_url,
+          },
+        } 
+      );
+    } else {
+      setSession(null);
+    }
+  }
+
+  React.useEffect(()=>{fetchUser()}, []);
+ 
+
   const authentication = React.useMemo(() => {
     return {
       signIn: () => {
-        setSession(demoSession);
+        setSession(session);
       },
-      signOut: () => {
+      signOut: async () => {
+       const {error} =  await supabase.auth.signOut()
         setSession(null);
+        navigate('/');
       },
+    
     };
-  }, []);
+},[]);
 
   return (
     <AppProvider
     branding={{
-      logo: <img src="https://mui.com/static/logo.png" alt="MUI logo" />,
-      title: "ali",
+      logo: <img src={Logo} alt="MUI logo" />,
+      title:<Typography variant="h6" sx={{ color: '#4A0072', fontWeight: 'bold' }}>
+      LOANIFY
+    </Typography>,
       homeUrl: '/toolpad/core/introduction',
+     
     }}
       navigation={NAVIGATION}
       router={router}
@@ -302,9 +287,10 @@ function DashboardLayoutAccountSidebar(props) {
       window={demoWindow}
       authentication={authentication}
       session={session}
+      allowfullscreen
     >
-      <DashboardLayout
-        slots={{toolbarAccount:null, sidebarFooter: SidebarFooterAccount }}
+      <DashboardLayout  defaultCollapsibleSidebar
+        slots={{toolbarAccount:null }}
       >
         <DemoPageContent pathname={pathname} />
       </DashboardLayout>

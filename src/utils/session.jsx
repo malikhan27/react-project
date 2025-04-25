@@ -25,8 +25,9 @@ export default function GetSession() {
                
               }
             } else {
+              console.log(currentPath)
               if (!isAuthPage) {
-               navigatepage("/signup")
+               navigatepage("/")
               }
         }
         

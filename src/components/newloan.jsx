@@ -15,6 +15,8 @@ import {
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { useForm, Controller } from 'react-hook-form';
+import { supabase } from '../utils/config';
+
 
 const steps = ['Personal Details', 'Inquiry', 'Loan Request'];
 
@@ -87,8 +89,29 @@ export default function NewLoan() {
   const handleConfirmSubmit = () => {
     const finalData = getValues();
     console.log('Final submitted data:', finalData);
-    alert('✅ Data submitted successfully!');
+    async function saveDatabase() {
+
+      try {
+        const { data , error } = await supabase
+        .from('loanRequest')
+        .insert({ name:finalData.name,email:finalData.email,profession:finalData.profession,income:finalData.income,loanAmount:finalData.loanAmount,duration:finalData.duration, });
+        if (error) throw error;
+        if (data) {
+          console.log('Data inserted successfully:', data);
+      
+          
+        }
+
+      } catch (error) {
+        
+      } 
+  
+   
+    }
+
+    
     handleReset();
+    saveDatabase();
   };
 
   return (
@@ -261,7 +284,7 @@ export default function NewLoan() {
           </Button>
           <Button onClick={handleConfirmSubmit} color="primary" variant="contained">
             Confirm & Submit
-          </Button>
+          </Button>;
         </DialogActions>
       </Dialog>
     </Box>
