@@ -89,7 +89,7 @@ export default function Dashboarddata() {
     </Card>
     <Card variant='solid' sx={{backgroundColor:'#f1befa', marginTop: 3,  paddingX:3,paddingY:1, textAlign:'center'}}>
       <CardContent >
-        <div style={{color:"#380940"}} className='flex flex-col items-center gap-4  flex-wrap'>
+        <div sx={{color:"#380940"}} className='flex flex-col items-center gap-4  flex-wrap'>
           <BarChartIcon sx={{fontSize: 50}}/>
           <div className=''>
             <h6 className=' fw-bolder'>TOTAL CUSTOMER</h6>
