@@ -278,7 +278,7 @@ function DashboardLayoutAccountSidebar(props) {
       title:<Typography variant="h6" sx={{ color: '#4A0072', fontWeight: 'bold' }}>
       LOANIFY
     </Typography>,
-      homeUrl: '/toolpad/core/introduction',
+      homeUrl: '/dashboard',
      
     }}
       navigation={NAVIGATION}
