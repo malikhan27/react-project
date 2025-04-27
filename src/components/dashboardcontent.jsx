@@ -36,10 +36,10 @@ export default function Dashboarddata() {
         width: "100%",
         height: "100%",
         display: "flex",
-        alignItems: "space-between",
+        alignItems: "space-around",
         justifyContent: "space-between",
         flexDirection: "column",
-        paddingX: { xs: 2},
+        paddingX: { xs: 2}
       }}
     >
       <Box
@@ -165,7 +165,9 @@ export default function Dashboarddata() {
           </CardContent>
         </Card>
       </Box>
+      <Box>
       <SimpleCharts pendingData={filteredData.length} />
+      </Box>
     </Box>
   );
 }
