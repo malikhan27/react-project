@@ -36,8 +36,8 @@ export default function Dashboarddata() {
         width: "100%",
         height: "100%",
         display: "flex",
-        alignItems: "space-around",
-        justifyContent: "space-around",
+        alignItems: "space-between",
+        justifyContent: "space-between",
         flexDirection: "column",
         paddingX: { xs: 2},
       }}
