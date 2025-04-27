@@ -33,6 +33,7 @@ export default function Dashboarddata() {
   return (
     <Box
       sx={{
+        marginTop: 3,
         width: "100%",
         height: "100%",
         display: "flex",
@@ -49,6 +50,7 @@ export default function Dashboarddata() {
           justifyContent: "space-around",
           alignItems: "center",
           flexDirection: { xs: "column", lg: "row" },
+          marginBottom: 3,
         }}
       >
         <Card
@@ -56,12 +58,12 @@ export default function Dashboarddata() {
           sx={{
             backgroundColor: "#f1befa",
             marginTop: 3,
-            paddingX: {xs:4,md:4,lg:4,xl:6},
+            paddingX: {xs:4,md:4,lg:4},
             paddingY: 1,
             textAlign: "center",
             borderRadius: 4,
             boxShadow: "0px 0px 8px rgba(71, 8, 68, 0.69)",
-            width: { xs: "75%", lg: "auto"}
+            width: { xs: "75%", lg: "20%" , xl: "20%"}
           }}
         >
           <CardContent>
@@ -84,12 +86,12 @@ export default function Dashboarddata() {
           sx={{
             backgroundColor: "#f1befa",
             marginTop: 3,
-            paddingX: {xs:4,md:4,lg:4,xl:6},
+            paddingX: {xs:4,md:4},
             paddingY: 1,
             textAlign: "center",
             borderRadius: 4,
             boxShadow: "0px 0px 8px rgb(71, 8, 68)",
-            width: { xs: "75%", lg: "auto"}
+            width: { xs: "75%", lg: "20%" , xl: "20%"}
           }}
         >
           <CardContent>
@@ -113,12 +115,12 @@ export default function Dashboarddata() {
           sx={{
             backgroundColor: "#f1befa",
             marginTop: 3,
-            paddingX: {xs:4,md:4,lg:4,xl:6},
+            paddingX: {xs:4,md:4},
             paddingY: 1,
             textAlign: "center",
             borderRadius: 4,
             boxShadow: "0px 0px 8px rgb(71, 8, 68)",
-            width: { xs: "75%", lg: "auto"}
+            width: { xs: "75%", lg: "20%" , xl: "20%"}
           }}
         >
           <CardContent>
@@ -141,12 +143,12 @@ export default function Dashboarddata() {
           sx={{
             backgroundColor: "#f1befa",
             marginTop: 3,
-            paddingX: {xs:4,md:4,lg:4,xl:6},
+            paddingX: {xs:4,md:4},
             paddingY: 1,
             textAlign: "center",
             borderRadius: 4,
             boxShadow: "0px 0px 8px rgb(71, 8, 68)",
-            width: { xs: "75%", lg: "auto"}
+            width: { xs: "75%", lg: "20%" , xl: "20%"}
           }}
         >
           <CardContent>
