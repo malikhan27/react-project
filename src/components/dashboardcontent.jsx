@@ -50,7 +50,7 @@ export default function Dashboarddata() {
           justifyContent: "space-around",
           alignItems: "center",
           flexDirection: { xs: "column", lg: "row" },
-          marginBottom: 3,
+      
         }}
       >
         <Card
@@ -167,8 +167,8 @@ export default function Dashboarddata() {
           </CardContent>
         </Card>
       </Box>
-      <Box>
-      <SimpleCharts pendingData={filteredData.length} />
+       <Box sx={{marginBottom: 3 , marginTop: 3}}>
+       <SimpleCharts pendingData={filteredData.length} />
       </Box>
     </Box>
   );
