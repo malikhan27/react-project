@@ -20,7 +20,7 @@ export default function SimpleCharts({ pendingData, totalData, approvedData }) {
           },
         ]
         }
-        height={500}
+        height={300}
         
         
       />
