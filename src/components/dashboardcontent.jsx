@@ -39,6 +39,7 @@ export default function Dashboarddata() {
         alignItems: "center",
         gap: 2,
         flexDirection: "column",
+        paddingX: { xs: 2},
       }}
     >
       <Box
@@ -46,7 +47,7 @@ export default function Dashboarddata() {
           width: "100%",
           display: "flex",
           justifyContent: "space-around",
-          
+          alignItems: "center",
           flexDirection: { xs: "column", lg: "row" },
         }}
       >
@@ -55,10 +56,12 @@ export default function Dashboarddata() {
           sx={{
             backgroundColor: "#f1befa",
             marginTop: 3,
-            paddingX: {xs:6,md:4,lg:4,xl:8},
+            paddingX: {xs:4,md:4,lg:4,xl:6},
             paddingY: 1,
             textAlign: "center",
             borderRadius: 4,
+            boxShadow: "0px 0px 8px rgba(71, 8, 68, 0.69)",
+            width: { xs: "75%", lg: "auto"}
           }}
         >
           <CardContent>
@@ -68,7 +71,7 @@ export default function Dashboarddata() {
             >
               <AccessTimeIcon sx={{ fontSize: 50 }} />
               <div>
-                <h6 className=" fw-bolder">PENDING REQUEST</h6>
+                <h4 className=" fw-bolder">PENDING REQUEST</h4>
                 <h2 className=" fw-bold mt-3">
                   {!filteredData.length ? <Loader /> : filteredData.length}
                 </h2>
@@ -81,10 +84,12 @@ export default function Dashboarddata() {
           sx={{
             backgroundColor: "#f1befa",
             marginTop: 3,
-            paddingX: {xs:6,md:4,lg:4,xl:8},
+            paddingX: {xs:4,md:4,lg:4,xl:6},
             paddingY: 1,
             textAlign: "center",
             borderRadius: 4,
+            boxShadow: "0px 0px 8px rgb(71, 8, 68)",
+            width: { xs: "75%", lg: "auto"}
           }}
         >
           <CardContent>
@@ -94,7 +99,7 @@ export default function Dashboarddata() {
             >
               <CheckBoxIcon sx={{ fontSize: 52 }} />
               <div>
-                <h6 className=" fw-bolder">APPROVED LOANS</h6>
+                <h4 className=" fw-bolder">APPROVED LOANS</h4>
                 <p className=" mt-3">
                   <Loader />
                 </p>
@@ -108,10 +113,12 @@ export default function Dashboarddata() {
           sx={{
             backgroundColor: "#f1befa",
             marginTop: 3,
-            paddingX: {xs:6,md:4,lg:4,xl:8},
+            paddingX: {xs:4,md:4,lg:4,xl:6},
             paddingY: 1,
             textAlign: "center",
             borderRadius: 4,
+            boxShadow: "0px 0px 8px rgb(71, 8, 68)",
+            width: { xs: "75%", lg: "auto"}
           }}
         >
           <CardContent>
@@ -121,7 +128,7 @@ export default function Dashboarddata() {
             >
               <TrendingUpIcon sx={{ fontSize: 50 }} />
               <div className="">
-                <h6 className="fw-bolder">TOTAL REQUEST</h6>
+                <h4 className="fw-bolder">TOTAL REQUEST</h4>
                 <p className=" mt-3">
                   <Loader />
                 </p>
@@ -134,10 +141,12 @@ export default function Dashboarddata() {
           sx={{
             backgroundColor: "#f1befa",
             marginTop: 3,
-            paddingX: {xs:6,md:4,lg:4,xl:8},
+            paddingX: {xs:4,md:4,lg:4,xl:6},
             paddingY: 1,
             textAlign: "center",
             borderRadius: 4,
+            boxShadow: "0px 0px 8px rgb(71, 8, 68)",
+            width: { xs: "75%", lg: "auto"}
           }}
         >
           <CardContent>
@@ -147,7 +156,7 @@ export default function Dashboarddata() {
             >
               <BarChartIcon sx={{ fontSize: 50 }} />
               <div className="">
-                <h6 className=" fw-bolder">TOTAL CUSTOMER</h6>
+                <h4 className=" fw-bolder">TOTAL CUSTOMER</h4>
                 <p className=" mt-3">
                   <Loader />
                 </p>
