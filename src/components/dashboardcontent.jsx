@@ -167,7 +167,7 @@ export default function Dashboarddata() {
           </CardContent>
         </Card>
       </Box>
-       <Box sx={{marginBottom: 3 , marginTop: 3}}>
+       <Box sx={{marginBottom: 3}}>
        <SimpleCharts pendingData={filteredData.length} />
       </Box>
     </Box>

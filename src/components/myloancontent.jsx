@@ -14,7 +14,7 @@ import { Badge } from 'react-bootstrap';
 const fetchedData = [
 ]
 
-async function getData() {
+export async function getData() {
   try {
     const { data, error } = await supabase
     .from('loanRequest')

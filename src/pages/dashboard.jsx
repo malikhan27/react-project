@@ -31,12 +31,12 @@ import AddIcon from '@mui/icons-material/Add';
 import { supabase } from '../utils/config';
 import { useNavigate,useLocation } from 'react-router';
 import GetSession from '../utils/session';
+import DataTable from '../components/datagrid';
 
 
 function sessionCheck() {
 return(
   <GetSession/>
-
 )}
 
 sessionCheck()
@@ -112,7 +112,7 @@ switch (pathname) {
   case '/dashboard':
     return (<Dashboarddata/>);
     case '/orders': 
-    return (<MyLoanContent/>);
+    return (<DataTable/>);
   case '/Loanrequests':
    return (<NewLoan/>);
 
