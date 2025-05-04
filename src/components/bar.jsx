@@ -16,7 +16,7 @@ export default function SimpleCharts({ pendingData, totalData, approvedData }) {
         series={[
           {
             data: [pendingData, totalData, approvedData],
-            color: '#1a011f',
+            color: ' rgba(50, 178, 233, 0.94)',
           },
         ]
         }

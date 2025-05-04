@@ -69,39 +69,59 @@ const NAVIGATION = [
 const demoTheme = createTheme({
   palette: {
     primary: {
-      main: '#C8A2D1',  // Lilac
+      main: '#38bdf8', // Sky blue
     },
     background: {
-      default: '#ffff',  // Light Grey
-      paper: '#ffff',    // White paper background
+      default: '#ffffff', // White
+      paper: '#ffffff',   // Card/Paper background
     },
     text: {
-      primary: '#380940',  // Dark text for readability
-      secondary: '#380940',  // Lighter grey text
+      primary: '#0a192f',   // Dark blue
+      secondary: '#1e293b', // Slightly lighter dark blue (optional)
     },
   },
   typography: {
     fontFamily: 'Roboto, sans-serif',
+    allVariants: {
+      color: '#0a192f',
+    },
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: '12px', // Rounded buttons
+          borderRadius: '10px',
+          textTransform: 'none',
+          color: '#0a192f',
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#ffffff',
+          color: '#0a192f',
+        },
+      },
+    },
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+        
+          color: '#ffffff',
+        },
+      },
+    },
+    MuiDrawer: {
+      styleOverrides: {
+        paper: {
+          color: '#0a192f',
         },
       },
     },
   },
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 600,
-      md: 600,
-      lg: 1200,
-      xl: 1536,
-    },
-  },
 });
+
 
 
 
@@ -274,8 +294,7 @@ function DashboardLayoutAccountSidebar(props) {
   return (
     <AppProvider
     branding={{
-      logo: <img src={Logo} alt="MUI logo" />,
-      title:<Typography variant="h6" sx={{ color: '#4A0072', fontWeight: 'bold' }}>
+      title:<Typography variant="h6" sx={{ color: 'navy', fontWeight: 'bold' }}>
       LOANIFY
     </Typography>,
       homeUrl: '/dashboard',
