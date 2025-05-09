@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 
 export default function SimpleCharts({ pendingData, totalData, approvedData }) {
   return (
-    <Box sx={{ width: '100%', height: '100%' ,flexGrow: 3, paddingX: { xs: 2 } }}>
+    <Box sx={{ width: '100%' , paddingX: { xs: 2 }, display: 'flex', flexDirection: 'column'}}>
       <BarChart
         xAxis={[
           {

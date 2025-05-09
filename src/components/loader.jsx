@@ -6,7 +6,7 @@ const override = {
   margin: "0 auto",
 };
 
-export default function Loader() {
+export default function Loader({size}) {
   const [loading] = useState(true);
   const [color] = useState("#38bdf8"); // sky blue for visibility on white
 
@@ -16,7 +16,7 @@ export default function Loader() {
         color={color}
         loading={loading}
         cssOverride={override}
-        size={15}
+        size={size}
         aria-label="Loading Spinner"
         data-testid="loader"
       />

@@ -5,6 +5,7 @@ import App from './App.jsx'
 import DashboardLayoutAccountSidebar from './pages/dashboard.jsx'
 import GetSession from './utils/session.jsx'
 import AdminDashboard from './pages/admindashboard.jsx'
+import CompleteDataProvider from './context/completeData.jsx'
 
 
 
@@ -17,6 +18,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     
     <BrowserRouter>
+  <CompleteDataProvider>
     <GetSession/>
      <Routes>
      <Route path='/' element={<App/>}/>
@@ -24,7 +26,7 @@ createRoot(document.getElementById('root')).render(
       <Route path='/dashboard' element={<DashboardLayoutAccountSidebar/>}/>
       <Route path='/admindashboard' element={<AdminDashboard/>}/> 
     </Routes>
-    </BrowserRouter>
-      
+  </CompleteDataProvider>
+    </BrowserRouter>  
   </StrictMode>,
 )
