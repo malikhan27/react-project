@@ -13,25 +13,26 @@ import { useContext } from "react";
 import { CompleteDataContext } from "../context/completeData";
 
 export default function Dashboarddata() {
- const { completeData, fetchCompleteData } = useContext(CompleteDataContext);
-
-  const [filteredData, setFilteredData] = React.useState([]);
+ const { completeData, sessiondata } = useContext(CompleteDataContext);
+const [filteredData, setFilteredData] = React.useState([]);
   const [approvedData, setApprovedData] = React.useState([]);
+
+  
 
 
   React.useEffect(() => {
-  
-    const pending = completeData.filter((item) => item.status === "pending");
-    const approved = completeData.filter((item) => item.status === "approved");
+    
+    const currentUser = completeData.filter((item) => item.userid == sessiondata.user.id)
+    console.log(currentUser)
+    const pending = currentUser.filter((item) => item.status === "pending");
+    const approved = currentUser.filter((item) => item.status === "approved");
   
     setFilteredData(pending);
     setApprovedData(approved);
   }, [completeData]);
 
-
+  const isLoading = !completeData?.length || !sessiondata?.user?.id;
  
- 
-  
 
   return (
     <Box
@@ -77,7 +78,7 @@ export default function Dashboarddata() {
               <Box sx={{ whiteSpace: "wrap" }}>
                 <h4 className="fw-bolder">PENDING LOANS</h4>
                 <h2 className="fw-bold mt-3">
-                  {!filteredData.length ? <Loader size = {15}/> : filteredData.length}
+                  {isLoading ? <Loader size = {15}/>:filteredData.length}
                 </h2>
               </Box>
             </Box>
@@ -103,7 +104,7 @@ export default function Dashboarddata() {
               <Box sx={{ whiteSpace: "wrap" }}>
                 <h4 className="fw-bolder">APPROVED LOANS</h4>
                 <h2 className="mt-3 fw-bolder">
-                {!approvedData.length ? <Loader size = {15}/> : approvedData.length}
+                {isLoading ? <Loader size = {15}/> :approvedData.length}
                 </h2>
               </Box>
             </Box>
@@ -129,7 +130,7 @@ export default function Dashboarddata() {
               <Box sx={{ whiteSpace: "wrap" }}>
                 <h4 className="fw-bolder">TOTAL REQUEST</h4>
                 <h2 className="mt-3 fw-bolder">
-                  {!completeData.length ? <Loader size = {15}/> : completeData.length}
+                  {isLoading? <Loader size = {15}/> :completeData.length}
                 </h2>
               </Box>
             </Box>

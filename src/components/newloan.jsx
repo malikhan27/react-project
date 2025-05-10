@@ -24,7 +24,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const steps = ['Personal Details', 'Inquiry', 'Loan Request'];
 
 export default function NewLoan() {
-  const { completeData, fetchCompleteData } = useContext(CompleteDataContext);
+  const { completeData, fetchCompleteData ,sessiondata } = useContext(CompleteDataContext);
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
   const [showConfirmation, setShowConfirmation] = React.useState(false);
@@ -92,6 +92,7 @@ export default function NewLoan() {
         income: finalData.income,
         loanAmount: finalData.loanAmount,
         duration: finalData.duration,
+        userid: sessiondata.user.id,
       });
 
       if (error) throw error;

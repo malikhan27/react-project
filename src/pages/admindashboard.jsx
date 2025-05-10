@@ -60,6 +60,11 @@ const NAVIGATION = [
     title: 'Loan requests',
     icon: <AddIcon />,
   },
+  {
+    segment: 'allUsers',
+    title: 'ALL USERS',
+    icon: <AddIcon />,
+  },
 ];
 
 const demoTheme = createTheme({

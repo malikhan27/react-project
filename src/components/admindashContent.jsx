@@ -25,13 +25,14 @@ export default function AdminDashContent() {
     setChartData({ dates, loans });
   }, [completeData]);
 
+  const isLoading= !chartData
  
  
  
   return (  
    
    <Box>
-    {chartData.dates.length === 0 ? (
+    {isLoading? (
         <Box sx={{ width: '100%', paddingX: { xs: 2 },height: '100%', marginY:"10%" ,display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <Loader size={50} />
         </Box>

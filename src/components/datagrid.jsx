@@ -131,7 +131,9 @@ export default function DataTable() {
 
   const [usersData, setUsersData] = useState([]);
 
-  const { completeData, fetchCompleteData } = useContext(CompleteDataContext);
+ const { completeData, sessiondata ,fetchCompleteData} = useContext(CompleteDataContext);
+  const filteredData= completeData.filter((item)=> item.userid == sessiondata.user.id)
+  console.log(filteredData)
 
   return (
     <Box sx={{ width: "100%", overflowX: "auto" }}>
@@ -142,7 +144,7 @@ export default function DataTable() {
           {" "}
           {/* Ensures DataGrid gets enough width */}
           <DataGrid
-            rows={completeData}
+            rows={location.pathname=="/admindashboard"?completeData:filteredData}
             columns={columns}
             initialState={{
               filter: {
