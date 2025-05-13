@@ -15,12 +15,12 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { AppProvider } from '@toolpad/core/AppProvider';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
 import Logo from "../assets/logo.png";
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import {
   Account,
   AccountPreview
 } from '@toolpad/core/Account';
 
-import MyLoanContent from '../components/myloancontent';
 import NewLoan from '../components/newloan';
 import userImage from '../assets/user.png';
 import AddIcon from '@mui/icons-material/Add';
@@ -29,6 +29,7 @@ import { useNavigate,useLocation } from 'react-router';
 import GetSession from '../utils/session';
 import DataTable from '../components/datagrid';
 import AdminDashContent from '../components/admindashContent';
+import Allusers from '../components/users';
 
 function sessionCheck() {
 return(
@@ -55,15 +56,11 @@ const NAVIGATION = [
     title: 'Orders',
     icon: <ShoppingCartIcon />,
   },
-   {
-    segment: 'Loanrequests',
-    title: 'Loan requests',
-    icon: <AddIcon />,
-  },
+  
   {
     segment: 'allUsers',
-    title: 'ALL USERS',
-    icon: <AddIcon />,
+    title: 'All Users',
+    icon: <PeopleAltIcon/>,
   },
 ];
 
@@ -134,8 +131,8 @@ switch (pathname) {
     return (<AdminDashContent/>);
     case '/orders': 
     return (<DataTable/>);
-  case '/Loanrequests':
-   return (<NewLoan/>);
+  case '/allUsers':
+   return (<Allusers/>);
 
   default:
     break;

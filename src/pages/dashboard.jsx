@@ -24,7 +24,6 @@ import {
   SignOutButton,
 } from '@toolpad/core/Account';
 import Dashboarddata from '../components/dashboardcontent';
-import MyLoanContent from '../components/myloancontent';
 import NewLoan from '../components/newloan';
 import userImage from '../assets/user.png';
 import AddIcon from '@mui/icons-material/Add';

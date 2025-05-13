@@ -1,9 +1,19 @@
-import { useState, useEffect, useContext } from 'react';
-import { CompleteDataContext } from '../context/completeData';
-import * as React from 'react';
-import { BarChart } from '@mui/x-charts/BarChart';
-import Box from '@mui/material/Box';
-import Loader from './loader';
+import { useState, useEffect, useContext } from "react";
+import { CompleteDataContext } from "../context/completeData";
+import * as React from "react";
+import { BarChart } from "@mui/x-charts/BarChart";
+import Box from "@mui/material/Box";
+import Loader from "./loader";
+import PieActiveArc from "./piechart";
+import SimpleLineChart from "./linechartloan";
+import { shadows } from '@mui/system';
+
+
+
+
+
+
+
 
 export default function AdminDashContent() {
   const { completeData } = useContext(CompleteDataContext);
@@ -11,7 +21,7 @@ export default function AdminDashContent() {
 
   useEffect(() => {
     const approvedData = completeData
-      .filter((item) => item.status === 'approved')
+      .filter((item) => item.status === "approved")
       .map((item) => ({
         loan: item.loanAmount,
         dateObj: new Date(item.created_at),
@@ -25,28 +35,61 @@ export default function AdminDashContent() {
     setChartData({ dates, loans });
   }, [completeData]);
 
-  const isLoading= !chartData
- 
- 
- 
-  return (  
-   
-   <Box>
-    {isLoading? (
-        <Box sx={{ width: '100%', paddingX: { xs: 2 },height: '100%', marginY:"10%" ,display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <Loader size={50} />
-        </Box>
-    ) : (
-      <Box sx={{ width: '100%', paddingX: { xs: 2 }, display: 'flex', flexDirection: 'column' }}>
-        <BarChart
-          xAxis={[{ data: chartData.dates }]}
-          series={[{ data: chartData.loans, label: 'Approved Loan Amount by Dates', color: '#1976d2' }]}
-          height={290}
-        />
+  const isLoading = !chartData;
+
+  return (
+    <>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: { xs: "column", lg: "row" },
+          margin:1,
+          paddingX:3,
+          gap:1
+        }}
+      >
+        {isLoading ? (
+          <Box
+            sx={{
+              width: "100%",
+              paddingX: { xs: 2 },
+              height: "100%",
+              marginY: "10%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Loader size={50} />
+          </Box>
+        ) : (
+          <>
+            <Box sx={{ width: {xs:"90%",lg:"50%"}, paddingX: { xs: 2 } }}>
+              <BarChart
+                xAxis={[{ data: chartData.dates }]}
+                series={[
+                  {
+                    data: chartData.loans,
+                    label: "Approved Loan Amount by Dates",
+                    itemStyle: (_, index) => ({
+                      fill: index % 2 === 0 ? "#1976d2" : "#f44336", // Blue and Red
+                    }),
+                  },
+                ]}
+                height={290}
+              />
+            </Box>
+            <Box sx={{width: {xs:"90%",lg:"50%"}, marginY: "5%", }}>
+              <PieActiveArc />
+            </Box>
+          </>
+        )}
       </Box>
-    )}
-  
-  </Box>
-   
+      <Box sx={{ margin:1}}>
+        <SimpleLineChart />
+      </Box>
+    </>
   );
 }
