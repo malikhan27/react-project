@@ -22,7 +22,7 @@ const [filteredData, setFilteredData] = React.useState([]);
 
   React.useEffect(() => {
     
-    const currentUser = completeData.filter((item) => item.userid == sessiondata.user.id)
+    const currentUser = completeData.filter((item) => item?.userid == sessiondata?.user.id)
     console.log(currentUser)
     const pending = currentUser.filter((item) => item.status === "pending");
     const approved = currentUser.filter((item) => item.status === "approved");

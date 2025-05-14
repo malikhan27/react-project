@@ -132,7 +132,7 @@ export default function DataTable() {
   const [usersData, setUsersData] = useState([]);
 
  const { completeData, sessiondata ,fetchCompleteData} = useContext(CompleteDataContext);
-  const filteredData= completeData.filter((item)=> item.userid == sessiondata.user.id)
+  const filteredData= completeData.filter((item)=> item?.userid == sessiondata?.user.id)
   console.log(filteredData)
 
   return (
