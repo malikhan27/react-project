@@ -1,7 +1,9 @@
 import { createContext, useState , useEffect} from "react";
 import { supabase } from "../utils/config";
-import { data } from "react-router";
 import { supaAdmin } from "../utils/config";
+import useLoanRequestSubscription from "../utils/realtime";
+
+
 
 
 
@@ -24,7 +26,9 @@ export default function CompleteDataProvider({ children }) {
         setCompleteData(totaldata);
         console.log(totaldata);
       }
-    } catch (error) {}
+    } catch (error) {
+      error.message
+    }
    
    }
 
@@ -58,6 +62,7 @@ export default function CompleteDataProvider({ children }) {
     }
     }
 
+    useLoanRequestSubscription(setCompleteData)
 
 
   const Datastore={
@@ -83,7 +88,7 @@ export default function CompleteDataProvider({ children }) {
 
     
     return (
-     <CompleteDataContext.Provider value={Datastore} refresh={fetchCompleteData} refreshsession={fetchSessionData}>
+     <CompleteDataContext.Provider value={Datastore} >
         {children}
      </CompleteDataContext.Provider>)
 

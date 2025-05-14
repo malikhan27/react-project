@@ -11,6 +11,7 @@ import {useEffect, useState , useContext} from 'react';
 import { Badge } from 'react-bootstrap';
 import { CompleteDataContext } from '../context/completeData';
 import { Button } from '@mui/material';
+import useLoanRequestSubscription from '../utils/realtime';
 
 
 
@@ -20,14 +21,16 @@ import { Button } from '@mui/material';
 
 export default function  Allusers() {
 
-  
+  const [usersdata,setusersdata]=useState([])
   const{fetchusersData}=  useContext(CompleteDataContext)
 
   useEffect(()=>{
-    fetchusersData(),[]
-  })
+    fetchusersData()
+  },[])
  
  const {allusersData}= useContext(CompleteDataContext)
+ 
+ 
 console.log(allusersData)
   return (
     <TableContainer component={Paper}>

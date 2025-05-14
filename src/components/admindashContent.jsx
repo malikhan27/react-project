@@ -7,6 +7,7 @@ import Loader from "./loader";
 import PieActiveArc from "./piechart";
 import SimpleLineChart from "./linechartloan";
 import { shadows } from '@mui/system';
+import useLoanRequestSubscription from "../utils/realtime";
 
 
 
@@ -16,8 +17,11 @@ import { shadows } from '@mui/system';
 
 
 export default function AdminDashContent() {
+  
   const { completeData } = useContext(CompleteDataContext);
   const [chartData, setChartData] = useState({ dates: [], loans: [] });
+
+
 
   useEffect(() => {
     const approvedData = completeData
@@ -34,6 +38,8 @@ export default function AdminDashContent() {
 
     setChartData({ dates, loans });
   }, [completeData]);
+
+
 
   const isLoading = !chartData;
 

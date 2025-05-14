@@ -6,14 +6,17 @@ import { format } from 'date-fns';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Loader from './loader';
+import useLoanRequestSubscription from '../utils/realtime';
 
 const margin = { right: 24 };
 
 export default function SimpleLineChart() {
   const { completeData } = useContext(CompleteDataContext);
   const [monthlyData, setMonthlyData] = useState({ months: [], totals: [] });
+ 
 
   useEffect(() => {
+    
     const approvedLoans = completeData.filter((item) => item.status === 'approved');
 
     const monthlyTotals = {};
@@ -34,6 +37,8 @@ export default function SimpleLineChart() {
 
     setMonthlyData({ months: sortedMonths, totals });
   }, [completeData]);
+
+  
 
   const totalApproved = monthlyData.totals.reduce((sum, val) => sum + val, 0);
   const isLoading = !monthlyData 

@@ -11,6 +11,7 @@ import Loader from "./loader";
 import { useLocation } from "react-router";
 import {Button} from "@mui/material";
 import { Typography } from "@mui/joy";
+import useLoanRequestSubscription from "../utils/realtime";
 
 export default function DataTable() {
   const location = useLocation();
@@ -129,10 +130,13 @@ export default function DataTable() {
       : []),
   ];
 
-  const [usersData, setUsersData] = useState([]);
+ 
 
  const { completeData, sessiondata ,fetchCompleteData} = useContext(CompleteDataContext);
-  const filteredData= completeData.filter((item)=> item?.userid == sessiondata?.user.id)
+
+ 
+
+  const filteredData= completeData?.filter((item)=> item?.userid == sessiondata?.user.id)
   console.log(filteredData)
 
   return (

@@ -4,8 +4,11 @@ import { PieChart } from '@mui/x-charts/PieChart';
 import { CompleteDataContext } from '../context/completeData';
 
 
+
 export default function PieActiveArc() {
   const { completeData } = useContext(CompleteDataContext);
+  
+
 
   const statusCounts = useMemo(() => {
     const counts = {

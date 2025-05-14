@@ -11,17 +11,19 @@ import BarChartIcon from "@mui/icons-material/BarChart";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import { useContext } from "react";
 import { CompleteDataContext } from "../context/completeData";
+import useLoanRequestSubscription from "../utils/realtime";
 
 export default function Dashboarddata() {
+
  const { completeData, sessiondata } = useContext(CompleteDataContext);
 const [filteredData, setFilteredData] = React.useState([]);
   const [approvedData, setApprovedData] = React.useState([]);
 
-  
+
+ 
 
 
   React.useEffect(() => {
-    
     const currentUser = completeData.filter((item) => item?.userid == sessiondata?.user.id)
     console.log(currentUser)
     const pending = currentUser.filter((item) => item.status === "pending");
@@ -30,6 +32,8 @@ const [filteredData, setFilteredData] = React.useState([]);
     setFilteredData(pending);
     setApprovedData(approved);
   }, [completeData]);
+  
+  
 
   const isLoading = !completeData?.length || !sessiondata?.user?.id;
  
