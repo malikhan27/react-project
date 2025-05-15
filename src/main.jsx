@@ -1,11 +1,12 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter,Routes,Route } from 'react-router'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App.jsx'
 import DashboardLayoutAccountSidebar from './pages/dashboard.jsx'
 import GetSession from './utils/session.jsx'
 import AdminDashboard from './pages/admindashboard.jsx'
 import CompleteDataProvider from './context/completeData.jsx'
+import DataTable from './components/datagrid.jsx';
 
 
 
@@ -25,6 +26,9 @@ createRoot(document.getElementById('root')).render(
       <Route path='/signup' element={<App/>}/>  
       <Route path='/dashboard' element={<DashboardLayoutAccountSidebar/>}/>
       <Route path='/admindashboard' element={<AdminDashboard/>}/> 
+      
+
+
     </Routes>
   </CompleteDataProvider>
     </BrowserRouter>  

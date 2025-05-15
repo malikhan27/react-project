@@ -29,7 +29,7 @@ import NewLoan from '../components/newloan';
 import userImage from '../assets/user.png';
 import AddIcon from '@mui/icons-material/Add';
 import { supabase } from '../utils/config';
-import { useNavigate,useLocation } from 'react-router';
+import { useNavigate,useLocation } from 'react-router-dom';
 import GetSession from '../utils/session';
 import DataTable from '../components/datagrid';
 

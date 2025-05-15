@@ -40,8 +40,7 @@ export default function AdminDashContent() {
   }, [completeData]);
 
 
-
-  const isLoading = !chartData;
+const isLoading = chartData.dates.length === 0 || chartData.loans.length === 0;
 
   return (
     <>

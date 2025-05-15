@@ -10,13 +10,28 @@ import { useContext } from "react";
 import Loader from "./loader";
 import { useLocation } from "react-router";
 import {Button} from "@mui/material";
-import { Typography } from "@mui/joy";
-import useLoanRequestSubscription from "../utils/realtime";
+import {Typography} from "@mui/material";
+import { Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+
 
 export default function DataTable() {
   const location = useLocation();
+const [openModal, setOpenModal] = useState(false);
+const [selectedRow, setSelectedRow] = useState(null);
 
+const handleOpenModal = (row) => {
+  setSelectedRow(row);
+  setOpenModal(true);
+};
 
+const handleCloseModal = () => {
+  setOpenModal(false);
+  setSelectedRow(null);
+};
+
+const { completeData, sessiondata ,fetchCompleteData} = useContext(CompleteDataContext);
+console.log(sessiondata.user)
   const columns = [
     {
       field: "id",
@@ -63,7 +78,7 @@ export default function DataTable() {
       align: "center",
       headerAlign: "center",
     },
-    ...(location.pathname === "/admindashboard"
+    ...(sessiondata.user.user_metadata.email==="alikhancss27@gmail.com"
       ? [
           {
             field: "action",
@@ -119,20 +134,31 @@ export default function DataTable() {
             },
           },
           {
-            field: "updated_at",
-            headerName: "Updated At",
-            type: "dateTime",
-            minWidth: 180,
-            align: "center",
-            headerAlign: "center",
-          },
+             field: "View",
+  headerName: "View",
+  type: "text",
+  minWidth: 180,
+  align: "center",
+  headerAlign: "center",
+  renderCell: (params) => {
+    return (
+      <Button
+        variant="outlined"
+        color="primary"
+        onClick={() => handleOpenModal(params.row)}
+      >
+        <RemoveRedEyeIcon/>
+      </Button>
+    );
+  },
+          }
         ]
       : []),
   ];
 
  
 
- const { completeData, sessiondata ,fetchCompleteData} = useContext(CompleteDataContext);
+ 
 
  
 
@@ -140,6 +166,7 @@ export default function DataTable() {
   console.log(filteredData)
 
   return (
+    <>
     <Box sx={{ width: "100%", overflowX: "auto" }}>
       {!completeData ? (
         <Loader />
@@ -185,5 +212,34 @@ export default function DataTable() {
         </Box>
       )}
     </Box>
+  <Dialog open={openModal} onClose={handleCloseModal} maxWidth="sm" fullWidth>
+  <DialogTitle>Loan Request Details</DialogTitle>
+  <DialogContent dividers>
+    {selectedRow ? (
+      <Box sx={{ display: "flex", flexDirection: "column", gap: 2 , color:'text.primary' }}>
+        <Typography><strong>ID:</strong> {selectedRow.id}</Typography>
+        <Typography><strong>Name:</strong> {selectedRow.name}</Typography>
+        <Typography><strong>Status:</strong> {selectedRow.status}</Typography>
+        <Typography><strong>Loan Amount:</strong> {selectedRow.loanAmount}</Typography>
+        <Typography><strong>Duration:</strong> {selectedRow.duration}</Typography>
+        <Typography><strong>Profession:</strong> {selectedRow.profession}</Typography>
+        <Typography><strong>Income:</strong> {selectedRow.income}</Typography>
+
+        {/* Add more fields as needed */}
+      </Box>
+    ) : (
+      <Typography>Loading...</Typography>
+    )}
+  </DialogContent>
+  <DialogActions>
+    <Button onClick={handleCloseModal} color="primary">
+      Close
+    </Button>
+  </DialogActions>
+</Dialog>
+
+
+
+</>
   );
 }
