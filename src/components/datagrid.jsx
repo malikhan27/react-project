@@ -2,9 +2,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useState, useEffect } from "react";
 import { supabase } from "../utils/config";
 import { CompleteDataContext } from "../context/completeData";
-import * as React from "react";
 import { Chip } from "@mui/material";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import Box from "@mui/material/Box";
 import { useContext } from "react";
 import Loader from "./loader";
@@ -30,8 +28,8 @@ const handleCloseModal = () => {
   setSelectedRow(null);
 };
 
-const { completeData, sessiondata ,fetchCompleteData} = useContext(CompleteDataContext);
-console.log(sessiondata.user)
+const { completeData, sessiondata ,fetchCompleteData,  fetchSessionData} = useContext(CompleteDataContext);
+fetchSessionData()
   const columns = [
     {
       field: "id",
@@ -78,8 +76,8 @@ console.log(sessiondata.user)
       align: "center",
       headerAlign: "center",
     },
-    ...(sessiondata.user.user_metadata.email==="alikhancss27@gmail.com"
-      ? [
+    ...(location.pathname=="/admindashboard" ? 
+       [
           {
             field: "action",
             headerName: "Action",
@@ -161,9 +159,11 @@ console.log(sessiondata.user)
  
 
  
+  
+ const filteredData = sessiondata?.user 
+  ? completeData?.filter((item) => item?.userid === sessiondata.user.id) 
+  : [];
 
-  const filteredData= completeData?.filter((item)=> item?.userid == sessiondata?.user.id)
-  console.log(filteredData)
 
   return (
     <>

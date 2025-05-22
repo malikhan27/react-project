@@ -31,12 +31,7 @@ import DataTable from '../components/datagrid';
 import AdminDashContent from '../components/admindashContent';
 import Allusers from '../components/users';
 
-function sessionCheck() {
-return(
-  <GetSession/>
-)}
 
-sessionCheck()
 
 
 

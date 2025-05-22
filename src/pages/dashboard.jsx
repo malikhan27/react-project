@@ -1,32 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Stack from '@mui/material/Stack';
-import MenuList from '@mui/material/MenuList';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Avatar from '@mui/material/Avatar';
-import Divider from '@mui/material/Divider';
 import { createTheme } from '@mui/material/styles';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { AppProvider } from '@toolpad/core/AppProvider';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
-import Logo from "../assets/logo.png";
-
-
-
-import {
-  Account,
-  AccountPreview,
-  AccountPopoverFooter,
-  SignOutButton,
-} from '@toolpad/core/Account';
+import { CopilotPopup } from "@copilotkit/react-ui";
 import Dashboarddata from '../components/dashboardcontent';
 import NewLoan from '../components/newloan';
-import userImage from '../assets/user.png';
 import AddIcon from '@mui/icons-material/Add';
 import { supabase } from '../utils/config';
 import { useNavigate,useLocation } from 'react-router-dom';
@@ -34,12 +16,6 @@ import GetSession from '../utils/session';
 import DataTable from '../components/datagrid';
 
 
-function sessionCheck() {
-return(
-  <GetSession/>
-)}
-
-sessionCheck()
 
 
 
@@ -206,6 +182,8 @@ function DashboardLayoutAccountSidebar(props) {
     };
 },[]);
 
+
+
   return (
     <AppProvider
     branding={{
@@ -226,8 +204,12 @@ function DashboardLayoutAccountSidebar(props) {
       <DashboardLayout  defaultCollapsibleSidebar
         slots={{toolbarAccount:null }}
       >
-        <DemoPageContent pathname={pathname} />
+      <DemoPageContent pathname={pathname} />
       </DashboardLayout>
+        
+
+  
+  
     </AppProvider>
   );
 }

@@ -81,7 +81,17 @@ export default function CompleteDataProvider({ children }) {
 
    useEffect(() => {
     fetchCompleteData();
+   
+}, []);
+
+ useEffect(() => {
+   
     fetchSessionData();
+  
+}, []);
+
+ useEffect(() => {
+  
     fetchusersData()
 }, []);
 

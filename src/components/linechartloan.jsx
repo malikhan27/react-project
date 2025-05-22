@@ -6,7 +6,6 @@ import { format } from 'date-fns';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Loader from './loader';
-import useLoanRequestSubscription from '../utils/realtime';
 
 const margin = { right: 24 };
 
